@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mailcatcher:
+    image: schickling/mailcatcher
+    volumes:
+      - ./opt:/root/opt
+    ports:
+      # - 1080:1080
+      - 9025:1025
+
+  # 基本認証を実装するためにnginxでプロキシたてる．このイメージ経由でmailcatcherにアクセスする
+  nginx-proxy:
+    image: quay.io/dtan4/nginx-basic-auth-proxy:latest
+    ports:
+      - 9080:80
+    depends_on:
+      - mailcatcher
+    environment:
+      - BASIC_AUTH_USERNAME=username
+      - BASIC_AUTH_PASSWORD=hvwuhDDNpmCV
+      - PROXY_PASS=http://mailcatcher:1080/

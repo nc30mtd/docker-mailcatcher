@@ -1,2 +1,8 @@
 # docker-mailcatcher
-mailcatcher用コンテナ
+基本認証つきmailcatcher用コンテナ
+
+# Usage
+
+```
+$ docker-compose up -d
+```
