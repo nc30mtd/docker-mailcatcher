@@ -2,9 +2,8 @@ version: '3'
 
 services:
   mailcatcher:
-    image: schickling/mailcatcher
-    volumes:
-      - ./opt:/root/opt
+    #image: schickling/mailcatcher
+    build: .
     ports:
       # - 1080:1080
       - 9025:1025
